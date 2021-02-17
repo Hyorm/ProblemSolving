@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include <string>
 #include <iostream>
+#include <memory.h>//for baekjoon compiler(C++11)
 
 using namespace std;
 
