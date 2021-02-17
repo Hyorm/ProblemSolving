@@ -73,16 +73,16 @@ vector<int> solution(vector<string> info, vector<string> query) {
         }
         int scId = 0;
         for(const vector<int> &iter_in: db){
+            if(db_score[scId++] < score){
+                continue;
+            }
             vector<int> tmp_in(iter_in.size()+tmp.size());
             auto it = set_difference(tmp.begin(), tmp.end(), iter_in.begin(), iter_in.end(), tmp_in.begin());
             tmp_in.erase(it, tmp_in.end());
 			
             if(tmp_in.size() == 0){
-                if(db_score[scId] >= score){
-					count++;
-                }
+		count++;
             }
-            scId++;
         }
         answer.push_back(count);
     }
