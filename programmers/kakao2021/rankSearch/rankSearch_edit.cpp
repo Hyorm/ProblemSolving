@@ -26,6 +26,7 @@ using namespace std;
 int findType(string bf);
 void printVector(const vector<int> &vec);
 vector<int> solution(vector<string> info, vector<string> query);
+bool compare(vector<int> a, vector<int> b);
 
 int main(){
 
@@ -38,32 +39,39 @@ int main(){
 vector<int> solution(vector<string> info, vector<string> query) {
     vector<int> answer;
 
-    int** db = new int*[info.size()];
+    int db[info.size()][4];
 
-    for(int i = 0; i < info.size(); i++){
-        db[i] = new int[4];
-        memset(db[i], 0, sizeof(int)*4);
-    }
-
-    int db_score[info.size()];
-    int db_row = 0; 
-    for(const string &iter : info){
+    vector<vector<int>> db_score;
+    int db_row = 0;
+    for(const string &iter : info){ //N
         int pos = 0;
+        int db_col = 0;
         string tok;
         string tmp = iter.c_str();
         string del = " ";
-		int db_col = 0;
-        while((pos = tmp.find(" ")) != string::npos){
-			tok = tmp.substr(0, pos);
+        while((pos = tmp.find(" ")) != string::npos){ //4
+            tok = tmp.substr(0, pos);
             tmp.erase(0, pos + del.length());
             int tp = findType(tok);
             if(tp > -2 && db_col < 4){
 				db[db_row][db_col++] = tp;
 			}
         }
-        db_score[db_row++] = stoi(tmp.substr(0, pos));
+        vector<int> tdb;
+        tdb.push_back(stoi(tmp.substr(0, pos)));
+        tdb.push_back(db_row++);
+		db_score.push_back(tdb);
     }
-    for(const string &iter : query){
+	for(int i = 0; i<db_row;i++){
+        cout<<db_score[i][1]<<" "<<db_score[i][0]<<endl;
+    }
+    cout<<endl;
+	sort(db_score.begin(), db_score.end(), compare);
+	for(int i = 0; i<db_row;i++){
+		cout<<db_score[i][1]<<" "<<db_score[i][0]<<endl;
+	}
+	cout<<endl;
+    for(const string &iter : query){ // M
         int pos = 0;
         string tok;
         string tmp = iter.c_str();
@@ -72,11 +80,11 @@ vector<int> solution(vector<string> info, vector<string> query) {
         int qu_id = 0;
         int score = 0;
         int count = 0;
-        while((pos = tmp.find(" ")) != string::npos){
+        while((pos = tmp.find(" ")) != string::npos){ // 4
             tok = tmp.substr(0, pos);
-			if(tok.compare("and") == 0){
+            if(tok.compare("and") == 0){
                 tmp.erase(0, pos + del.length());
-				continue;
+                continue;
             }
             int tp = findType(tok);
             qu_find[qu_id++] = tp;
@@ -84,29 +92,29 @@ vector<int> solution(vector<string> info, vector<string> query) {
         }
         score = stoi(tmp.substr(0, pos));
 
-        for(int i = 0; i < db_row; i++){
-            if(db_score[i] < score){
-                continue;
+        for(int i = 0; i < db_row; i++){ // N
+			if(db_score[i][0] < score){
+				cout<<db_score[db_score[i][1]][0]<<" "<<score<<endl;
+				break;
             }
             int check = 0;
-            for(int j = 0; j < qu_id; j++){
-                if(qu_find[j] == -1 || qu_find[j] == db[i][j]){
+            for(int j = 0; j < qu_id; j++){ //4
+                if(qu_find[j] == -1 || qu_find[j] == db[db_score[i][1]][j]){
+					cout<<qu_find[j]<<" "<<db[db_score[i][1]][j]<<endl;
                     continue;
                 }else{
                     check++;
                 }
+				cout<<endl;
             }
             if(check == 0){
                 count++;
+				cout<<"find!"<<endl<<endl;
             }
         }
         answer.push_back(count);
+		cout<<"check!"<<endl<<endl;
     }
-
-    for(int i = 0; i < info.size(); i++){
-        delete db[i];
-    }
-    delete[] db;
 
     return answer;
 }
@@ -140,11 +148,12 @@ int findType(string bf){
     }
 	return tp;
 }
-
+bool compare(vector<int> a, vector<int> b){
+    return a[0] > b[0];
+}
 void printVector(const vector<int> &vec) {
     for (const int &it : vec) {
         cout<<it<<" ";
     }
     cout<<endl;
 }
-
