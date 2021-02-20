@@ -55,6 +55,7 @@ void printRoom(){
 }
 
 void cleaning(int go){
+	cout<<"cur ("<<cur_r<<", "<<cur_c<<") - "<<room[cur_r][cur_c]<<" dir: "<<dir<<" spin: "<<spin<<endl;
 	if(go == 2){
 		room[cur_r][cur_c] = 2;
 	}
