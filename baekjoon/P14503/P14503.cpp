@@ -71,10 +71,12 @@ void cleaning(int go){
 					spin = 0;
 					cleaning(2);
 				}
-				else{
+				else if(room[cur_r + 1][cur_c] == 2){
 					cur_r++;
 					spin = 0;
 					cleaning(0);
+				}else{
+
 				}
 			}
 		}
@@ -86,10 +88,12 @@ void cleaning(int go){
 					spin = 0;
 					cleaning(2);
 				}
-				else{
+				else if(room[cur_r][cur_c - 1] == 2){
 					cur_c--;
 					spin = 0;
 					cleaning(0);
+				}else{
+
 				}
 			}
 		}
@@ -101,10 +105,12 @@ void cleaning(int go){
 					spin = 0;
 					cleaning(2);
 				}
-				else{
+				else if(room[cur_r - 1][cur_c] == 2){
 					cur_r--;
 					spin = 0;
 					cleaning(0);
+				}else{
+
 				}
 			}
 		}else{
@@ -115,10 +121,12 @@ void cleaning(int go){
 					spin = 0;
 					cleaning(2);
 				}
-				else{
+				else if(room[cur_r][cur_c + 1] == 2){
 					cur_c++;
 					spin = 0;
 					cleaning(0);
+				}else{
+
 				}
 			}
 		}
