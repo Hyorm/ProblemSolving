@@ -4,14 +4,15 @@
 
 using namespace std;
 
-int binarySearch(long long low, long long high);
+long long binarySearch(long long low, long long high);
+int findDist(long long mid);
 
 long long* home; 
-int N, C, answer = 0;
-
+int N, C;
+long long answer = 0;
 
 int main(int argc, char** argv){
-	scanf("%d %d", N, C);
+	scanf("%d %d", &N, &C);
 
 	home = new long long[N];
 	
@@ -21,14 +22,37 @@ int main(int argc, char** argv){
 
 	sort(home, home + N);
 
-	printf("%d", binarySearch(1ll, home[N-1]));
+	printf("%lld\n", binarySearch(1ll, home[N-1]));
 	
 	delete[] home;
 
 	return 0;
 }
 
-int binarySearch(long long low, long long high){
+long long binarySearch(long long low, long long high){
 
+	if(low > high){
+		return answer;
+	}
+	long long mid = (low+high)/2;
 
+	int check = findDist(mid);
+	if(check >= C){
+		answer = mid;
+		return binarySearch(mid+1,high);
+	}
+	return binarySearch(low, mid-1);
+}
+
+int findDist(long long mid){
+	int check = 1;
+	int bf_h = home[0];
+
+	for(int i = 1; i < N; i++){
+		if(home[i] >= check * mid && (home[i] - bf_h) >= mid){
+			bf_h = home[i];
+			check++;
+		}
+	}
+	return check;
 }
