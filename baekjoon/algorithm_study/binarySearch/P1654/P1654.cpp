@@ -1,40 +1,48 @@
 #include <stdio.h>
 #include <iostream>
+#include <algorithm>
 #include <memory.h>
 
 using namespace std;
-
-int solution(int k, int n, int min, int* list);
-
+int answer = 0;
+long long binarySearch(long long* list, int K, int N, long long low, long long high);
+int sumTree(long long* list, int K, long long len);
+long long up = 0;
 int main(int argv, char** argc){
 	int K, N;
 
 	scanf("%d %d", &K, &N);
 	
-	int* list = new int[K];
-	int min = -1;
+	long long * list = new long long[K];
 	for(int i = 0; i<K; i++){
-		scanf("%d",&list[i]);
-		if(min == -1 || min > list[i]){
-			min = list[i];
-		}
+		scanf("%lld",&list[i]);
 	}
-	printf("%d\n",solution(K, N, min, list));
+	sort(list, list+K);
+	printf("%lld\n",binarySearch(list, K, N, 1ll, list[K-1]));
 	delete[] list;
+
+	return 0;
 }
 
-int solution(int K, int N, int min, int* list){
-
-	int sum = 0, len = min;
-	int answer = 0;
+long long binarySearch(long long* list, int K, int N, long long low, long long high){
+	if(low > high){
+		return answer;
+	}
+	long long len = (low+high)/2;
+	int sum = sumTree(list, K, len);
+	//cout<<" "<<sum<<endl;
 	
-	while(sum < N){
-		sum = 0;
-		for(int i = 0; i < K; i++){
-			sum += list[i] / len;
-		}
-		len--;
-	}	
-	answer = len + 1;
-	return answer;
+	if(sum >= N){
+		answer = len;
+		return binarySearch(list, K, N, len + 1, high);
+	}
+	return binarySearch(list, K, N, low, len - 1);
+}
+
+int sumTree(long long* list, int K, long long len){
+	int sum = 0;
+	for(int i = 0; i < K; i++){
+		sum += list[i] / len;
+	}
+	return sum;
 }
