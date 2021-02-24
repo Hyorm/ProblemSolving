@@ -1,10 +1,14 @@
 #include <stdio.h>
 
 using namespace std;
-
-int f(int x){//too slow to use up to 30
+int memo[1001];
+int f(int x){
 	if(x < 2)return 1;
-	return f(x - 1) + f(x - 2);
+	if(memo[x] > 0){
+		return memo[x];
+	}
+	memo[x] = f(x - 1) + f(x - 2);
+	return memo[x];
 }
 
 int main(int argc, char** argv){
@@ -18,5 +22,5 @@ int main(int argc, char** argv){
 		dp[i] %= 10007;
 	}
 
-	printf("%d\n",dp[n]);
+	printf("%d\n",f(n));
 }
