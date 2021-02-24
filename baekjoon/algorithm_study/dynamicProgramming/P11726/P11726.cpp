@@ -7,7 +7,7 @@ int f(int x){
 	if(memo[x] > 0){
 		return memo[x];
 	}
-	memo[x] = f(x - 1) + f(x - 2);
+	memo[x] = (f(x - 1) + f(x - 2))%10007;
 	return memo[x];
 }
 
