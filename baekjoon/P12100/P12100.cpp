@@ -61,14 +61,31 @@ void up(int** room, int times){
 	}
 	check(room);
 	times++;
-	if(times < 5){
-		up(room, times);
-		down(room, times);
-		right(room, times);
-		left(room, times);
-	}
+    if(times < 5){
+        int** afterroom;
+        afterroom = new int*[N];
+        for(int i = 0 ; i < N; i++){
+            afterroom[i] = new int[N];
+            memcpy(afterroom[i], room[i], sizeof(int)*N);
+        }
+        up(afterroom, times);
+        for(int i = 0 ; i < N; i++){
+            memcpy(afterroom[i], room[i], sizeof(int)*N);
+        }
+        down(afterroom, times);
+        for(int i = 0 ; i < N; i++){
+            memcpy(afterroom[i], room[i], sizeof(int)*N);
+        }
+        right(afterroom, times);
+        for(int i = 0 ; i < N; i++){
+            memcpy(afterroom[i], room[i], sizeof(int)*N);
+        }
+        left(afterroom, times);
+        for(int i = 0 ; i < N; i++){
+            delete[] afterroom[i];
+        }
+    }
 }
-
 void down(int** room, int times){
 	//printf("down\n");
 	for(int i = 0; i < N; i++){//y
@@ -106,10 +123,28 @@ void down(int** room, int times){
 	check(room);
     times++;
     if(times < 5){
-        up(room, times);
-        down(room, times);
-        right(room, times);
-        left(room, times);
+        int** afterroom;
+        afterroom = new int*[N];
+        for(int i = 0 ; i < N; i++){
+            afterroom[i] = new int[N];
+            memcpy(afterroom[i], room[i], sizeof(int)*N);
+        }
+        up(afterroom, times);
+        for(int i = 0 ; i < N; i++){
+            memcpy(afterroom[i], room[i], sizeof(int)*N);
+        }
+        down(afterroom, times);
+        for(int i = 0 ; i < N; i++){
+            memcpy(afterroom[i], room[i], sizeof(int)*N);
+        }
+        right(afterroom, times);
+        for(int i = 0 ; i < N; i++){
+            memcpy(afterroom[i], room[i], sizeof(int)*N);
+        }
+        left(afterroom, times);
+        for(int i = 0 ; i < N; i++){
+            delete[] afterroom[i];
+        }
     }
 }
 
@@ -150,11 +185,29 @@ void left(int** room, int times){
 
 	check(room);
     times++;
-    if(times < 5){
-        up(room, times);
-        down(room, times);
-        right(room, times);
-        left(room, times);
+	if(times < 5){
+        int** afterroom;
+        afterroom = new int*[N];
+        for(int i = 0 ; i < N; i++){
+            afterroom[i] = new int[N];
+            memcpy(afterroom[i], room[i], sizeof(int)*N);
+        }
+        up(afterroom, times);
+        for(int i = 0 ; i < N; i++){
+            memcpy(afterroom[i], room[i], sizeof(int)*N);
+        }
+        down(afterroom, times);
+        for(int i = 0 ; i < N; i++){
+            memcpy(afterroom[i], room[i], sizeof(int)*N);
+        }
+        right(afterroom, times);
+        for(int i = 0 ; i < N; i++){
+            memcpy(afterroom[i], room[i], sizeof(int)*N);
+        }
+        left(afterroom, times);
+        for(int i = 0 ; i < N; i++){
+            delete[] afterroom[i];
+        }
     }
 }
 
@@ -195,10 +248,28 @@ void right(int** room, int times){
 	check(room);
     times++;
     if(times < 5){
-        up(room, times);
-        down(room, times);
-        right(room, times);
-        left(room, times);
+		int** afterroom;
+		afterroom = new int*[N];
+    	for(int i = 0 ; i < N; i++){
+        	afterroom[i] = new int[N];
+        	memcpy(afterroom[i], room[i], sizeof(int)*N);
+    	}
+        up(afterroom, times);
+    	for(int i = 0 ; i < N; i++){
+        	memcpy(afterroom[i], room[i], sizeof(int)*N);
+    	}
+        down(afterroom, times);
+        for(int i = 0 ; i < N; i++){
+            memcpy(afterroom[i], room[i], sizeof(int)*N);
+        }
+        right(afterroom, times);
+        for(int i = 0 ; i < N; i++){
+            memcpy(afterroom[i], room[i], sizeof(int)*N);
+        }
+        left(afterroom, times);
+		for(int i = 0 ; i < N; i++){
+            delete[] afterroom[i];
+        }
     }
 }
 
@@ -206,20 +277,36 @@ int main(int argc, char** argv){
 	scanf("%d", &N);
 
 	int** room = new int*[N];
+	int** afterroom = new int*[N];
 	for(int i = 0 ; i < N; i++){
 		room[i] = new int[N];
 		for(int j = 0; j < N; j++){
 			cin >> room[i][j];
 		}
+		afterroom[i] = new int[N];
+		memcpy(afterroom[i], room[i], sizeof(int)*N);
 	}
 
 	//UP
-	up(room, 0);
+	up(afterroom, 0);
+	for(int i = 0 ; i < N; i++){
+		memcpy(afterroom[i], room[i], sizeof(int)*N);
+	}
+
 	//DOWN
-	down(room, 0);
+	down(afterroom, 0);
+    for(int i = 0 ; i < N; i++){
+        memcpy(afterroom[i], room[i], sizeof(int)*N);
+    }
 	//RIGHT
-	right(room, 0);
+	right(afterroom, 0);
+    for(int i = 0 ; i < N; i++){
+        memcpy(afterroom[i], room[i], sizeof(int)*N);
+    }
 	//LEFT
-	left(room, 0);
+	left(afterroom, 0);
+	for(int i = 0 ; i < N; i++){
+       delete[] afterroom[i];
+    }
 	printf("%d\n", max_b);
 }
