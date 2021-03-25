@@ -21,7 +21,7 @@ void dfs(int A, int P){
 		A /= 10;
 	}
 	sum += pow((A%10),P);
-	auto it = find(G.begin(), G.end(), sum);
+	vector<int>::iterator it = find(G.begin(), G.end(), sum);//replace auto
 	if(it != G.end()){
 		G.erase(it, G.end());
 	}else{
