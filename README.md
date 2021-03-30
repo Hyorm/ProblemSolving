@@ -1,4 +1,4 @@
-# programmingSkill(ongoing):wrench:
+# ProblemSolving(ongoing):wrench:
 
 ## Summary
 
