@@ -92,38 +92,38 @@ int main(){
 						break;
 				case 'D':
 						 face('+', 5, 1);face('-', 4, 1);
-                         move(2, 1);
-                         rotate(d);
+						 move(2, 1);
+						 rotate(d);
 						 face(d, 1, 1);
-                         move(3, 1);
-                         face('+',4,1);face('-', 5, 1);
+						 move(3, 1);
+						 face('+',4,1);face('-', 5, 1);
 						break;
 				case 'F':rotate(d);
 						face(d, 1, 1);
 						break;
 				case 'B':
 						 face('+', 5, 2);face('-', 4, 2);
-                         move(0, 2);
-                         rotate(d);
+						 move(0, 2);
+						 rotate(d);
 						 face(d, 1, 1);
-                         move(1, 2);
-                         face('-', 5, 2);face('+', 4, 2);
+						 move(1, 2);
+						 face('-', 5, 2);face('+', 4, 2);
 						break;
 				case 'L':
 						 face('+', 3, 2);face('-', 0, 1);face('+', 2, 1);
-                         move(4, 1);
-                         rotate(d);
+						 move(4, 1);
+						 rotate(d);
 						 face(d, 1, 1);
-                         move(5, 1);
-                         face('+', 3, 2);face('+', 0, 1);face('-', 2, 1);
+						 move(5, 1);
+						 face('+', 3, 2);face('+', 0, 1);face('-', 2, 1);
 						break;
 				case 'R':
 						 face('+', 3, 2);face('+',0,1);face('-',2,1);
-                         move(6, 1);
-                         rotate(d);
+						 move(6, 1);
+						 rotate(d);
 						 face(d, 1, 1);
-                         move(7, 1);
-                         face('+', 3, 2);face('-',0,1);face('+',2,1);
+						 move(7, 1);
+						 face('+', 3, 2);face('-',0,1);face('+',2,1);
 						break;
 			}
 		}
