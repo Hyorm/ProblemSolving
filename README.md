@@ -31,3 +31,9 @@ Practice algorithms for efficient programs with C++17
 </pre>
 
 ### Codility
+<pre>
+|
+ - L{1..17}
+|
+ - L{90..92, 99}
+</pre>
