@@ -28,6 +28,8 @@ Practice algorithms for efficient programs with C++17
  - Pre-Test(for Naver)
 |
  - Kakao2021
+|
+ - Practice
 </pre>
 
 ### Codility
