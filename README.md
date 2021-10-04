@@ -2,7 +2,10 @@
 
 ## Summary
 
-Practice algorithms for efficient programs with C++17
+Practice algorithms for efficient programs with C++11/14 + C++17
+
+## Hackerrank
+[hyorm1226](https://www.hackerrank.com/hyorm1226)
 
 ### Baekjoon 
 [hyormhyorm](https://www.acmicpc.net/user/hyormhyorm)
